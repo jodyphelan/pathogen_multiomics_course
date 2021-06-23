@@ -124,7 +124,7 @@
         situations. We could ask, for instance, whether a bacterium uses its genome differentially when exposed to stress,
         such as heat or challenged by a drug. Alternatively, we could ask which genes make human livers different from
         kidneys.</p>
-      <p>In this exercises, we will try to gain some understanding of differences between <i>M. tuberculosis</i> lineages.
+      <p>In these exercises, we will try to gain some understanding of differences between <i>M. tuberculosis</i> lineages.
         The genome of <i>M. tuberculosis</i> was published in 1998 (Cole et al., 1998). It has 4.4 Mb and a high GC
         content (~65%), comprising 4,111 genes. Although the variability of the <i>M. tuberculosis</i> genome has been
         considered limited, it has been demonstrated a higher diversity than it was previously thought. Currently, <i>
@@ -145,7 +145,7 @@
           <p><b>Running BWA</b></p>
           <p>To work with the command line of Linux, you will first need to open a terminal and go to the data and
             transcriptomics directory:</p>
-          <pre><code>cd ~/data/transcriptomics</pre></code>
+          <pre><code>cd Module3</pre></code>
           <p>And list the files there:</p>
           <pre><code>ls</pre></code>
           <p>You will find there the 4 fastq files, 2 of them from the lineage 1 sample, and the reference genome fasta file; these
@@ -156,7 +156,7 @@
           <p>This will generate 5 files which are needed for BWA. We will then align the RNA-seq reads to the
             reference genome with bwa mem. We will therefore use the reference genome (in fasta format) and the two
             fastq files that contain the RNA-seq reads, saving the output to a SAM file. To start you should type:</p>
-          <pre><code>bwa mem H37Rv.fa Mtb_L1_1.fastq Mtb_L1_2.fastq > ./Mapping_Mtb/Mtb_L1.sam</pre></code>
+          <pre><code>bwa mem H37Rv.fa Mtb_L1_1.fastq.gz Mtb_L1_2.fastq.gz > ./Mapping_Mtb/Mtb_L1.sam</pre></code>
           <p>The output will be located in the <i>Mapping_Mtb</i> folder, which is in the transcriptomics directory.</p>
 
         <h4>Exercise 2: Converting BWA SAM output to BAM and indexing</h4>
@@ -168,7 +168,7 @@
           <p>To convert the BWA output SAM file to BAM format we are going to use samtools. First, we go to the directory
           where the output file from the BWA is and we will transform the sam file to bam (as we are already in the Transcriptomics
           directory we just need to type):</p>
-          <pre><code>cd ~/data/transcriptomics/Mapping_Mtb
+          <pre><code>cd Module3/Mapping_Mtb
 samtools view -b Mtb_L1.sam > Mtb_L1.bam</pre></code>
           <p>Once we have the BAM file, we need to sort it and index it. To do it, we will use samtools sort and
           samtools index commands:</p>
@@ -239,7 +239,7 @@ mv Mtb_L1.sorted.bam.bai Mtb_L1.bam.bai</pre></code>
             through BWA) and a list of genomic features (the <i>Mtb.gtf</i> file with the gene annotation).</p>
           <p>We will run HTSeq-count with the RNA-seq data from the L1 and L4 strains we were using in the previous
             exercises. To do it, we will go to the directory where we have the data and use the following command:</p>
-          <pre><code>cd ~/data/transcriptomics
+          <pre><code>cd Module3
 python -m HTSeq.scripts.count -f bam -r pos -s reverse -t gene ./Mapping_Mtb/Mtb_L1.bam Mtb.gtf > ./Mapping_Mtb/Mtb_L1_htseq_count.txt
 python -m HTSeq.scripts.count -f bam -r pos -s reverse -t gene ./Mapping_Mtb/Mtb_L4.bam Mtb.gtf > ./Mapping_Mtb/Mtb_L4_htseq_count.txt
 </pre></code>
@@ -256,7 +256,7 @@ python -m HTSeq.scripts.count -f bam -r pos -s reverse -t gene ./Mapping_Mtb/Mtb
           <pre><code>python -m HTSeq.scripts.count</pre></code>
           <div class="alert alert-warning">What would -a parameter do?</div>
           <p>We can now take a look at the results from the HTSeq-count typing the following in the command line:</p>
-          <pre><code>cd ~/data/transcriptomics/Mapping_Mtb
+          <pre><code>cd Module3/Mapping_Mtb
 less Mtb_L1_htseq_count.txt</pre></code>
           <p>You should see two columns with the list of genes and the counts for each gene.</p>
           <div class="alert alert-info" style="white-space:pre-wrap;"><samp>Rv2158c 0
@@ -310,7 +310,7 @@ Rv2183c 1197
             levels. In this exercise we will consider the 3 L1 and the 3 L4 samples as biological replicates.</p>
           <p>To start, we firstly need a table with the counts. In the <i>Mapping_Mtb</i> directory (where we should be) we can
             find a folder called <i>HTSeqCounts</i> with 6 files called:</p>
-          <pre><code>cd ~/data/transcriptomics/Mapping_Mtb/HTSeqCounts
+          <pre><code>cd Module3/Mapping_Mtb/HTSeqCounts
 ls</pre></code>
           <div class="alert alert-info" style="white-space:pre-wrap;"><samp>Mtb_1_L4_htseq_count.txt  Mtb_3_L1_htseq_count.txt  Mtb_5_L1_htseq_count.txt
 Mtb_2_L1_htseq_count.txt  Mtb_4_L4_htseq_count.txt  Mtb_6_L4_htseq_count.txt
@@ -325,7 +325,7 @@ library(gplots)</pre></code>
             samples we will use to perform the analysis.</p>
           <p>To prepare the data we are going to use the following scripts.</p>
           <p>First we are going to set the directory where we have the files:</p>
-          <pre><code>directory <- "/home/user/data/transcriptomics/Mapping_Mtb/HTSeqCounts/" </pre></code>
+          <pre><code>directory <- "~/Module3/Mapping_Mtb/HTSeqCounts/" </pre></code>
           <p>And now we can select the files and save them in the variable ‘sampleFiles’ by selecting all the files
             that contain "Mtb" that are present in our directory:</p>
           <pre><code>sampleFiles <- grep("Mtb", list.files(directory), value = TRUE)</pre></code>
