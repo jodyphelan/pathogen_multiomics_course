@@ -197,9 +197,9 @@ mv Mtb_L1.sorted.bam.bai Mtb_L1.bam.bai</pre></code>
         <h4>Exercise 3: Visualisation of the BAM files</h4>
           <p>Now we will examine the reads mapping in Artemis using the BAM view feature.</p>
           <p><b>Viewing the mapped reads in Artemis</b></p>
-          <p>Open Artemis (type <i>art</i> in the terminal) and select: 'File', 'Open Project Manager', select '+' to add a new project you can call "Mtb"
+          <p>Open Artemis (type <i>art</i> in the terminal) and select: 'File', 'Open Project Manager', select '+' to add a new project you can call "tb"
             and load <i>H37Rv.fa</i>, which contains the reference genome. We need also to add the genome features, so we can see the gene models. For
-            doing so, we will load the <i>Mtb.gtf</i> file (is in the <i>transcriptomics</i> directory) as the annotation track. Select 'annotation'
+            doing so, we will load the <i>Mtb.gtf</i> file (in the <i>~/Module3</i> directory) as the annotation track. Select 'annotation'
             and then press 'new property'.</p>
           <div class="text-center"><img src="img/rnaseq_3.png" class="img-fluid"></div>
           <p>Now select 'open' and the artemis window should appear. From the Artemis 'File' menu, select 'Read BAM/VCF', and then select the
@@ -220,7 +220,7 @@ mv Mtb_L1.sorted.bam.bai Mtb_L1.bam.bai</pre></code>
             time, which enables to comapre coverage from different samples. Hence, next we want to include more lineages,
             in this case we will add another sample belonging to the lineage 4 of <i>Mtb</i>.</p>
           <p>To do it, we will need first to follow the previous steps in order to get the sorted and index bam
-            files. Therefore, map it with BWA as before, the fastq files are in the directory <i>transcriptomics</i>
+            files. Therefore, map it with BWA as before, the fastq files are in the directory <i>~/Module3</i>
             and are called <i>Mtb_L4_1.fastq.gz</i> and <i>Mtb_L4_2.fastq.gz</i>. You can try with the one-line code!</p>
           <p>Once we have the bam files, we can add it to the viewer.</p>
           <div class="text-center"><img src="img/rnaseq_6.png" class="img-fluid"></div>
