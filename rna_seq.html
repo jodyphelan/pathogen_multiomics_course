@@ -483,8 +483,7 @@ Rv2573                 220.78828                 49.03022
 </samp></div>
           <p>To plot the heatmap copy the following script:</p>
           <pre><code>colnames(counts_heatmap) <- c("L4_1","L1_2","L1_3","L4_4","L1_5","L4_6")
-heatmap.2(as.matrix(counts_heatmap), scale="row", col=greenred(75), Rowv=NA,
-dendrogram = "col", trace="none", density.info = "none")</pre></code>
+heatmap.2(as.matrix(counts_heatmap), scale="row", col=greenred(75), Rowv=NA, dendrogram = "col", trace="none", density.info = "none")</pre></code>
           <p>You should get a plot like this:</p>
           <div class="text-center"><img src="img/rnaseq_9.png" class="img-fluid"></div>
           <div class="alert alert-warning">Do the samples cluster by lineage in the dendrogram?</div>
