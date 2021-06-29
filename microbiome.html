@@ -114,8 +114,8 @@
            and his software development team in the Department of Microbiology & Immunology at The University of
            Michigan. Its objective was to create a single piece of open-source, expandable software to fill the
            bioinformatics needs of the microbial ecology community.</p>
-        <p>In order to open mothur, open a new terminal and navigate to the folder ~/Module6/metagenomics.</p>
-        <pre><code>cd ~/Module6/metagenomics</pre></code>
+        <p>In order to open mothur, open a new terminal and navigate to the folder ~/Module6.</p>
+        <pre><code>cd ~/Module6</pre></code>
         <p>FOr this practical we will be using an old version of python so in order to use it run the commnad:</p>
         <pre><code>source activate mothur</pre></code>
         <p>Now, to start the software type in the command:</p>
@@ -316,7 +316,7 @@ total # of seqs:	<b>201491</b>
               To do this type:</p>
             <pre><code>system(ktImportXML BV_krona.xml -o BV_krona.html)</pre></code>
             <p>This will create the file <i>BV_krona.html</i> that you can open by navigating
-              to the folder <b>~/Module6/metagenomics/</b> and double clicking it (or by running <kbd>system(xdg-open BV_krona.html)</kbd>). It should open in
+              to the folder <b>~/Module6/</b> and double clicking it (or by running <kbd>system(xdg-open BV_krona.html)</kbd>). It should open in
               the Web browser.</p>
               <div class="text-center"><img src="img/Microbiome_6.jpg" class="img-fluid"></div>
               <br>
@@ -423,11 +423,11 @@ total # of seqs:	<b>201491</b>
                 <pre><code>rarefaction.single(shared=BV.an.shared, calc=sobs, freq=100)</pre></code>
                 <p>This will produce the file <i>BV.an.groups.rarefaction</i>. that includes the rarefaction curves for the 6
                  samples. To plot this rarefaction curves we will use the statistical software <i>R</i>. Open a new
-                 command line and navigate to <i>~/Module6/metagenomics/</i> and type <i>R</i>.</p>
-                 <pre><code>cd ~/Module6/metagenomics/
+                 command line and navigate to <i>~/Module6/</i> and type <i>R</i>.</p>
+                 <pre><code>cd ~/Module6/
 R</pre></code>
                 <p><b>This will start <i>R</i>. Then copy the following script to plot the graphics.</b></p>
-                <pre><code>data<-read.table("~/Module6/metagenomics/BV.an.groups.rarefaction",sep="\t",header=T)
+                <pre><code>data<-read.table("~/Module6/BV.an.groups.rarefaction",sep="\t",header=T)
 data_all<-c(data$X0.03.BB_1,data$X0.03.BB_2,data$X0.03.BB_3,data$X0.03.BB_4,data$X0.03.BB_5,data$X0.03.BB_6)
 max_all<-max(data_all,na.rm=TRUE)
 plot(data$numsampled,data$X0.03.BB_1,main="Rarefaction curves",xlab="Number of Reads Sampled",ylab="Number of Different OTUs", ylim=c(0,max_all),col=1,type="l")
