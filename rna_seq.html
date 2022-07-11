@@ -145,7 +145,7 @@
           <p><b>Running BWA</b></p>
           <p>To work with the command line of Linux, you will first need to open a terminal and go to the data and
             transcriptomics directory:</p>
-          <pre><code>cd ~/Module3</pre></code>
+          <pre><code>cd ~/Module5</pre></code>
           <p>And list the files there:</p>
           <pre><code>ls</pre></code>
           <p>You will find there the 4 fastq files, 2 of them from the lineage 1 sample, and the reference genome fasta file; these
@@ -168,7 +168,7 @@
           <p>To convert the BWA output SAM file to BAM format we are going to use samtools. First, we go to the directory
           where the output file from the BWA is and we will transform the sam file to bam (as we are already in the Transcriptomics
           directory we just need to type):</p>
-          <pre><code>cd ~/Module3/Mapping_Mtb
+          <pre><code>cd ~/Module5/Mapping_Mtb
 samtools view -b Mtb_L1.sam > Mtb_L1.bam</pre></code>
           <p>Once we have the BAM file, we need to sort it and index it. To do it, we will use samtools sort and
           samtools index commands:</p>
@@ -185,21 +185,21 @@ mv Mtb_L1.sorted.bam.bai Mtb_L1.bam.bai</pre></code>
           <p>The resulting bam and index files will then be in the folder <i>Mapping_Mtb</i>. The alignment output could
           now be visualised in Artemis, Tablet or a visualisation tool of your choice.</p>
           <div class="alert alert-info">
-            <p>The steps outlined above show how to go from a fastq file to a sorted bam file. Though we have asked you to run 
+            <p>The steps outlined above show how to go from a fastq file to a sorted bam file. Though we have asked you to run
               the steps individually, they can be combined into one line. <b>Don't run this line! This is just for your information.</b>
             </p>
             <pre><code>bwa mem H37Rv.fa Mtb_L1_1.fastq.gz Mtb_L1_2.fastq.gz | samtools sort --write-index -o ./Mapping_Mtb/Mtb_L1.bam - </code></pre>
-            <p>All samtools commands can take input as sam, bam or cram and converts to bam for internal use. We can therefor directly 
+            <p>All samtools commands can take input as sam, bam or cram and converts to bam for internal use. We can therefor directly
               pipe the sam output to samtools sort and store the sorted output in bam.
             </p>
           </div>
-          
+
         <h4>Exercise 3: Visualisation of the BAM files</h4>
           <p>Now we will examine the reads mapping in Artemis using the BAM view feature.</p>
           <p><b>Viewing the mapped reads in Artemis</b></p>
           <p>Open Artemis (type <i>art</i> in the terminal) and select: 'File', 'Open Project Manager', select '+' to add a new project you can call "tb"
             and load <i>H37Rv.fa</i>, which contains the reference genome. We need also to add the genome features, so we can see the gene models. For
-            doing so, we will load the <i>Mtb.gtf</i> file (in the <i>~/Module3</i> directory) as the annotation track. Select 'annotation'
+            doing so, we will load the <i>Mtb.gtf</i> file (in the <i>~/Module5</i> directory) as the annotation track. Select 'annotation'
             and then press 'new property'.</p>
           <div class="text-center"><img src="img/rnaseq_3.png" class="img-fluid"></div>
           <p>Now select 'open' and the artemis window should appear. From the Artemis 'File' menu, select 'Read BAM/VCF', and then select the
@@ -220,7 +220,7 @@ mv Mtb_L1.sorted.bam.bai Mtb_L1.bam.bai</pre></code>
             time, which enables to comapre coverage from different samples. Hence, next we want to include more lineages,
             in this case we will add another sample belonging to the lineage 4 of <i>Mtb</i>.</p>
           <p>To do it, we will need first to follow the previous steps in order to get the sorted and index bam
-            files. Therefore, map it with BWA as before, the fastq files are in the directory <i>~/Module3</i>
+            files. Therefore, map it with BWA as before, the fastq files are in the directory <i>~/Module5</i>
             and are called <i>Mtb_L4_1.fastq.gz</i> and <i>Mtb_L4_2.fastq.gz</i>. You can try with the one-line code!</p>
           <p>Once we have the bam files, we can add it to the viewer.</p>
           <div class="text-center"><img src="img/rnaseq_6.png" class="img-fluid"></div>
@@ -248,7 +248,7 @@ mv Mtb_L1.sorted.bam.bai Mtb_L1.bam.bai</pre></code>
             through BWA) and a list of genomic features (the <i>Mtb.gtf</i> file with the gene annotation).</p>
           <p>We will run HTSeq-count with the RNA-seq data from the L1 and L4 strains we were using in the previous
             exercises. To do it, we will go to the directory where we have the data and use the following command:</p>
-          <pre><code>cd ~/Module3
+          <pre><code>cd ~/Module5
 python -m HTSeq.scripts.count -f bam -r pos -s reverse -t gene ./Mapping_Mtb/Mtb_L1.bam Mtb.gtf > ./Mapping_Mtb/Mtb_L1_htseq_count.txt
 python -m HTSeq.scripts.count -f bam -r pos -s reverse -t gene ./Mapping_Mtb/Mtb_L4.bam Mtb.gtf > ./Mapping_Mtb/Mtb_L4_htseq_count.txt
 </pre></code>
@@ -265,7 +265,7 @@ python -m HTSeq.scripts.count -f bam -r pos -s reverse -t gene ./Mapping_Mtb/Mtb
           <pre><code>python -m HTSeq.scripts.count</pre></code>
           <div class="alert alert-warning">What would -a parameter do?</div>
           <p>We can now take a look at the results from the HTSeq-count typing the following in the command line:</p>
-          <pre><code>cd ~/Module3/Mapping_Mtb
+          <pre><code>cd ~/Module5/Mapping_Mtb
 less Mtb_L1_htseq_count.txt</pre></code>
           <p>You should see two columns with the list of genes and the counts for each gene.</p>
           <div class="alert alert-info" style="white-space:pre-wrap;"><samp>Rv2158c 0
@@ -319,7 +319,7 @@ Rv2183c 1197
             levels. In this exercise we will consider the 3 L1 and the 3 L4 samples as biological replicates.</p>
           <p>To start, we firstly need a table with the counts. In the <i>Mapping_Mtb</i> directory (where we should be) we can
             find a folder called <i>HTSeqCounts</i> with 6 files called:</p>
-          <pre><code>cd ~/Module3/Mapping_Mtb/HTSeqCounts
+          <pre><code>cd ~/Module5/Mapping_Mtb/HTSeqCounts
 ls</pre></code>
           <div class="alert alert-info" style="white-space:pre-wrap;"><samp>Mtb_1_L4_htseq_count.txt  Mtb_3_L1_htseq_count.txt  Mtb_5_L1_htseq_count.txt
 Mtb_2_L1_htseq_count.txt  Mtb_4_L4_htseq_count.txt  Mtb_6_L4_htseq_count.txt
@@ -334,7 +334,7 @@ library(gplots)</pre></code>
             samples we will use to perform the analysis.</p>
           <p>To prepare the data we are going to use the following scripts.</p>
           <p>First we are going to set the directory where we have the files:</p>
-          <pre><code>directory <- "~/Module3/Mapping_Mtb/HTSeqCounts/" </pre></code>
+          <pre><code>directory <- "~/Module5/Mapping_Mtb/HTSeqCounts/" </pre></code>
           <p>And now we can select the files and save them in the variable ‘sampleFiles’ by selecting all the files
             that contain "Mtb" that are present in our directory:</p>
           <pre><code>sampleFiles <- grep("Mtb", list.files(directory), value = TRUE)</pre></code>
