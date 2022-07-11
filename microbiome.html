@@ -306,9 +306,14 @@ total # of seqs:	<b>204033</b>
             <p>And then remove the undesirable ones:</p>
             <pre><code>remove.lineage(fasta=BV.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=BV.trim.contigs.good.unique.good.filter.unique.precluster.denovo.uchime.pick.count_table, taxonomy=BV.trim.contigs.good.unique.good.filter.unique.precluster.pick.silva.wang.taxonomy, taxon=Chloroplast-Mitochondria-unknown-Archaea-Eukaryota-unknown-Bradyrhizobium-Paracoccus-Comamonas-Moraxella-Pseudomonas-Acidobacteria-Cyanobacteria-Deinococcus-Thermus-Acidobacteria-Chloroplast-Cyanobacteria-Deinococci-ML635J-21-Sphingobacteriia-Deinococcales-Sphingobacteriales-Subgroup_2-Subgroup_3-Subgroup_4-Subgroup_5-Subgroup_6-SubsectionI-SubsectionII-SubsectionIII-Chitinophagaceae-Comamonadaceae-env.OPS_17-FamilyI-FamilyI-FamilyII-mitochondria-Moraxellaceae-NS9_marine_group-Sphingobacteriaceae-Trueperaceae-Unknown_Family-Unknown_Family-Acinetobacter-Afipia-Alicycliphilus-Alteromonas-Aquabacterium-Aquamicrobium-Azospira-Azospirillum-Blastocatella-Bosea-Bradyrhizobium-Brevundimonas-Bryobacter-Candidatus_Solibacter-Caulobacter-Chroococcidiopsis-Chroogloeocystis-Chryseobacterium-Cloacibacterium-Comamonas-Craurococcus-Crinalium-Cupriavidus-Curvibacter-Delftia-Diaphorobacter-Enhydrobacter-Flavisolibacter-Flavobacterium-Globicatella-Hydrotalea-Lautropia-Leptolyngbya-Marinobacter-Massilia-Mesorhizobium-Methylobacillus-Methylobacterium-Methylophilus-Methyloversatilis-Moraxella-Nitrosospira-Noviherbaspirillum-Novosphingobium-Paracoccus-Pedobacter-Pedomicrobium-Pelagibacterium-Phenylobacterium-Propionibacterium-Propioniciclava-Propioniferax-Propionimicrobium-Pseudomonas-Psychrobacter-Ralstonia-Rhizobium-Roseomonas-Salinimicrobium-Schlegelella-Sediminibacterium-Sphingobacterium-Sphingomonas-Stenotrophomonas-Sulfuritalea-Terrimonas-Tessaracoccus-Truepera-Undibacterium-Variovorax-Weeksella)</pre></code>
             <p>To see the output of this classification we will use another software called
-              <i>KronaTools</i>. For this type:</p>
-            <pre><code>system(python2 mothur_krona_XML.py BV.trim.contigs.good.unique.good.filter.unique.precluster.pick.silva.wang.tax.summary > BV_krona.xml)</pre></code>
-
+              <i>KronaTools</i>. For this we need to quickly create a python2 environment as follows:</p>
+            <pre><code>quit()</pre></code>
+            <pre><code>conda create --name py2 python=2</pre></code>
+            <pre><code>conda activate py2</pre></code>
+            <pre><code>pip install lxml</pre></code>
+            <pre><code>python mothur_krona_XML.py BV.trim.contigs.good.unique.good.filter.unique.precluster.pick.silva.wang.tax.summary > BV_krona.xml</pre></code>
+            <pre><code>conda activate mothur</pre></code>
+            <pre><code>mothur</pre></code>
             <p>This will create and output in XML format that can then be loaded into
               <i>KronaTools</i> to create an interactive plot to navigate through.
               To do this type:</p>
